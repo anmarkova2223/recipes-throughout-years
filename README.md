@@ -15,13 +15,13 @@ Our dataset contains 234429 rows
 <br><br>
 The columns we are interested in are detailed below
 <br><br>
-| Columns            | Description  |
-| ------------------ | :----------- |
-| id                 | Recipe ID       |
-| minutes            | Time taken to prepare the recipe |
-| contributor_id     | ID of the user who submitted the recipe |
-| submitted          | The date when the user posted the recipe |
-| nutrition          | Nutrition information including calories (#), total fat (PDV),sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates(PDV) |
+| Column | Description |
+| ----------- | ----------- |
+| id | Recipe ID |
+| minutes | Time taken to prepare the recipe |
+| contributor_id | ID of the user who submitted the recipe |
+| submitted | The date when the user posted the recipe |
+| nutrition | Nutrition information including calories (#), total fat ,sugar, sodium, protein, saturated fat, carbohydrates |
 | rating             | The rating of the recipe |
 | review             | The review left with the rating |
 | rating_avg         | The average rating for a specific recipe |
@@ -31,16 +31,16 @@ The columns we are interested in are detailed below
 ## Cleaning and EDA
 When conducting our data cleaning process we cleaned several columns. 
 
-#### Rating:
+#### `rating`:
 We cleaned the rating column by replacing the “0” values with np.NaN values. This changed the amount of actual data that we have and can use. In fact, while conducting our permutation tests we chose to drop the rows with np.NaN values. We made this decision because while shuffling the years column and counting up every type of rating we noticed that the results were inconsistent. This is because the amount of np.NaN value within each year was different after every permutation, making it difficult to compare our data. 
 
-#### Rating_avg:
+#### `rating_avg`:
 We also performed imputation of the ratings on the missing values. For every recipe we computed the average rating, and if any of the ratings were missing for that recipe we replaced it with that value. To make the data more readable and easier to manipulate we used pd.cut to transform float ratings into strict [1, 2, 3, 4, 5] rating by rounding down.
 	
-#### Submitted:
+#### `submitted`:
 We changed the submitted column to only contain the year the recipe was submitted in, to better suit our graphs and analysis. Since we are only interested in the year that the rating was submitted in, we changed that column to match.
 
-#### Calories:
+#### `calories`:
 The nutrition column had several different nutrition labels. We were interested in trends between calories and ratings, so we decided to extract the caloric value of each recipe from the nutrition column and add it as a new column.
 #### Our Cleaned DataFrame
 <table border="1" class="dataframe">
