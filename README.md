@@ -51,4 +51,30 @@ The nutrition column had several different nutrition labels. We were interested 
 |        |           |                  |             |                                              |          | Thanks so much for sharing your recipe shapeweaver. It was wonderful!  Going into my family's favorite Zaar cookbook :)                                                                                                                                                                                                                          |              |            |        |
 | 306168 |        40 |            50969 | 2008-05-30  | [194.8, 20.0, 6.0, 32.0, 22.0, 36.0, 3.0]    |        5 | I made this for my son's first birthday party this weekend. Our guests INHALED it! Everyone kept saying how delicious it was. I was I could have gotten to try it.                                                                                                                                                                               |            5 |      194.8 |   2008 |
 | 306168 |        40 |            50969 | 2008-05-30  | [194.8, 20.0, 6.0, 32.0, 22.0, 36.0, 3.0]    |        5 | Loved this.  Be sure to completely thaw the broccoli.  I didn&#039;t and it didn&#039;t get done in time specified.  Just cooked it a little longer though and it was perfect.  Thanks Chef.                                                                                                                                                     |            5 |      194.8 |   2008 |
-<iframe src="assets/calories-and-year.html" width=800 height=600 frameBorder=0></iframe>
+
+
+### Univariate Data
+<iframe src="assets/dist-avg-ratings.html" width=800 height=600 frameBorder=0></iframe>
+We created a density histogram that describes the proportion of each rating. As you can see on the graph it seems like a left skewed distribution. Thus, the majority of ratings fall into the 4 or 5 star category, while the rest of the ratings are 1, 2, or 3 stars. It seems that people tend to leave higher ratings rather than lower ratings for the recipes. People probably feel more strongly about the things that they liked and want to share with the world, rather than the things that they didn’t like or thought were just ok. 
+
+### Bivariate Data
+<iframe src="assets/year-and-ratings.html" width=800 height=600 frameBorder=0></iframe>
+We made a scatterplot with years on the x-axis and average rating on the y-axis. As you can see on the graph, there tends to be more points towards the higher ratings in general. There also seems to be more points in earlier years. For example, in 2008, the points from 3-5 form a line showing that the majority of points are in that region. In contrast, in 2018, there are a lot of points around 4-5 rating and there are more gaps in the data. This shows that while the trend of having more points towards higher ratings is consistent, there is less data in 2018.
+
+### Aggregate Data
+
+This is a table grouped by year, that takes the mean of the rating column for every year. The mean values tend to range between 4.46 and 4.71. We wanted to know if such differences were significant or not.
+
+|   rating |
+|---------:|
+|  4.66142 |
+|  4.68105 |
+|  4.69894 |
+|  4.70747 |
+|  4.72201 |
+|  4.70401 |
+|  4.71736 |
+|  4.68498 |
+|  4.50763 |
+|  4.46356 |
+|  4.49537 |
