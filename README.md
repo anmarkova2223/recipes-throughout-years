@@ -82,3 +82,21 @@ This is a table grouped by year, that takes the mean of the rating column for ev
 ## Assessment of Missingness
 In this dataset, we believe that the missingness type of missing values in `rating` would be NMAR. When we merge the `RAW_recipes.csv` and `RAW_interactions.csv`, we are doing a left outer merge which means that we would preserve the recipe even if there is no rating or comments made by users. Therefore, these recipes do not have ratings. The missing values in the `rating` column simply suggests that `rating` itself is missing.
 In addition, we believe that users who really loved the recipes are more likely to rate the recipe. This also explains why `rating` would be NMAR since they are missing depending on how users liked it which is essentially the actual value itself.
+<br>
+<br>
+As our question is centered around the distribution of rating in different years, our selected column would be `rating` and we are testing its missingness dependency on two columns: `calories` and `minutes`. In this case, we found our observed statistics to be the absolute difference in mean `calories` and `minutes` between the two groups of ratings missing and ratings not missing. We then run permutation tests 1,000 times to get 1,000 test statistics and calculate the probability of seeing values equal to or greater than our observed mean difference.
+When testing whether `rating`’s missingness depends on `reviews`, our p-value is 0.0 which means the missingness of `rating` would potentially be dependent on the `reveiws` column.
+When testing whether `rating`’s missingness depends on `minutes`, our p-value is 0.112 which means the missingness of `rating` would not be dependent on the `minutes` column.
+
+## Hypothesis Testing
+
+Our **null hypothesis** is that the distribution of ratings for recipes in 2018 is the same with the distribution of ratings for recipes for years before 2018. 
+<br>
+Our **alternative hypothesis** is that the distribution of ratings for recipes in 2018 is different from the distribution of recipes for years before 2018.
+<br>
+<br>
+In this case, as we are examining the differences in categorical distributions, we are using the total variation distance between the two rating distributions in 2018 and years before 2018. Since the numbers of recipes posted in 2018 and years before 2018 are different, we are calculating the total variation distances using proportions in each rating category.
+In our permutation test, we first drop the rows where ratings have NaN values as we would not want the number of missing rating values to differ in our two groups each time when we perform a permutation test.We then shuffle the `year` column and assign it as `shuffled_year`. We then group the data by 2018 and years before 2018 based on `shuffled_year`. After grouping the dataframe into two groups, we get the proportions of the rating distribution for each of the groups and then take the total variation distance between the distributions. We would repeat the process 1,000 times to see what is the probability of seeing values equal to or even more extreme than our observed total variation distance.
+Since we would like to fix our confidence interval at 0.05 and our p-value is 0.09, we would fail to reject the null hypothesis that the distribution of ratings for recipes in 2018 is the same with the distribution of ratings for recipes for years before 2018. 
+
+
