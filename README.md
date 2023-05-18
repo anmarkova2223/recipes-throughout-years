@@ -155,8 +155,9 @@ In addition, we believe that users who really loved the recipes are more likely 
 <br>
 <br>
 As our question is centered around the distribution of rating in different years, our selected column would be `rating` and we are testing its missingness dependency on two columns: `calories` and `minutes`. In this case, we found our observed statistics to be the absolute difference in mean `calories` and `minutes` between the two groups of ratings missing and ratings not missing. We then run permutation tests 1,000 times to get 1,000 test statistics and calculate the probability of seeing values equal to or greater than our observed mean difference.
-When testing whether `rating`’s missingness depends on `reviews`, our p-value is 0.0 which means the missingness of `rating` would potentially be dependent on the `reveiws` column.
-When testing whether `rating`’s missingness depends on `minutes`, our p-value is 0.112 which means the missingness of `rating` would not be dependent on the `minutes` column.
+When testing whether `rating`’s missingness depends on `reviews`, our p-value is 0.2 which is greater than our significance level of 0.05 which means the missingness of `rating` would not be dependent on the `reveiws` column.
+<iframe src="assets/missigness-graph.html" width=800 height=600 frameBorder=0></iframe>
+When testing whether `rating`’s missingness depends on `year`, our p-value is 0.0 which means the missingness of `rating` would dependent on the `year` column.
 
 ## Hypothesis Testing
 
