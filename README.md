@@ -15,51 +15,51 @@ The columns we are interested in are detailed below
 <br><br>
 <table border="1" class="dataframe">
     <thead>
-        <tr style="text-align: right;">
+        <tr style="text-align: left;">
             <th>Column</th>
             <th>Description</th>
         </tr>
     </thead>
     <tbody>
-        <tr style="text-align: right;">
-            <td>id</th>
-            <td>Recipe ID</th>
+        <tr style="text-align: left;">
+            <td>id</td>
+            <td>Recipe ID</td>
         </tr>
-        <tr style="text-align: right;">
-            <td>minutes</th>
-            <td>Recipe ID</th>
+        <tr style="text-align: left;">
+            <td>minutes</td>
+            <td>Recipe ID</td>
         </tr>
-        <tr style="text-align: right;">
-            <td>contributor_id</th>
-            <td>ID of the user who submitted the recipe</th>
+        <tr style="text-align: left;">
+            <td>contributor_id</td>
+            <td>ID of the user who submitted the recipe</td>
         </tr>
-        <tr style="text-align: right;">
-            <td>submitted</th>
-            <td>The date when the user posted the recipe</th>
+        <tr style="text-align: left;">
+            <td>submitted</td>
+            <td>The date when the user posted the recipe</td>
         </tr>
-        <tr style="text-align: right;">
-            <td>nutrition</th>
-            <td>Nutrition information including calories (#), total fat ,sugar, sodium, protein, saturated fat, carbohydrates</th>
+        <tr style="text-align: left;">
+            <td>nutrition</td>
+            <td>Nutrition information including calories (#), total fat ,sugar, sodium, protein, saturated fat, carbohydrates</td>
         </tr>
-        <tr style="text-align: right;">
-            <td>rating</th>
-            <td>The rating of the recipe</th>
+        <tr style="text-align: left;">
+            <td>rating</td>
+            <td>The rating of the recipe</td>
         </tr>
-        <tr style="text-align: right;">
-            <td>review</th>
-            <td>The review left with the rating</th>
+        <tr style="text-align: left;">
+            <td>review</td>
+            <td>The review left with the rating</td>
         </tr>
-        <tr style="text-align: right;">
-            <td>rating_avg</th>
-            <td>The average rating for a specific recipe</th>
+        <tr style="text-align: left;">
+            <td>rating_avg</td>
+            <td>The average rating for a specific recipe</td>
         </tr>
-        <tr style="text-align: right;">
-            <td>calories</th>
-            <td>The number of calories in the recipe</th>
+        <tr style="text-align: left;">
+            <td>calories</td>
+            <td>The number of calories in the recipe</td>
         </tr>
-        <tr style="text-align: right;">
-            <td>year</th>
-            <td>The year in which the recipe was submitted</th>
+        <tr style="text-align: left;">
+            <td>year</td>
+            <td>The year in which the recipe was submitted</td>
         </tr>
     </tbody>
 </table>
