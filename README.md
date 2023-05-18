@@ -1,6 +1,4 @@
-# Recipes Throughout Years
-Exploratory Data Analysis and Visualizations
-Names: Anastasiya Markova and Yuhe Tian
+This website details Exploratory Data Analysis and Visualizations on the Recipes Dataset
 <br>
 
 ## Introduction
@@ -15,18 +13,56 @@ Our dataset contains 234429 rows
 <br><br>
 The columns we are interested in are detailed below
 <br><br>
-| Column             | Description                                                                                                  |
-| ------------------ | -----------                                                                                                  |
-| id                 | Recipe ID                                                                                                    |
-| minutes            | Time taken to prepare the recipe                                                                             |
-| contributor_id     | ID of the user who submitted the recipe                                                                      |
-| submitted          | The date when the user posted the recipe                                                                     |
-| nutrition          | Nutrition information including calories (#), total fat ,sugar, sodium, protein, saturated fat, carbohydrates|
-| rating             | The rating of the recipe                                                                                     |
-| review             | The review left with the rating                                                                              |
-| rating_avg         | The average rating for a specific recipe                                                                     |
-| calories           | The number of calories in the recipe                                                                         |
-| year               | The year in which the recipe was submitted                                                                   |
+<table border="1" class="dataframe">
+    <thead>
+        <tr style="text-align: right;">
+            <th>Column</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="text-align: right;">
+            <td>id</th>
+            <td>Recipe ID</th>
+        </tr>
+        <tr style="text-align: right;">
+            <td>minutes</th>
+            <td>Recipe ID</th>
+        </tr>
+        <tr style="text-align: right;">
+            <td>contributor_id</th>
+            <td>ID of the user who submitted the recipe</th>
+        </tr>
+        <tr style="text-align: right;">
+            <td>submitted</th>
+            <td>The date when the user posted the recipe</th>
+        </tr>
+        <tr style="text-align: right;">
+            <td>nutrition</th>
+            <td>Nutrition information including calories (#), total fat ,sugar, sodium, protein, saturated fat, carbohydrates</th>
+        </tr>
+        <tr style="text-align: right;">
+            <td>rating</th>
+            <td>The rating of the recipe</th>
+        </tr>
+        <tr style="text-align: right;">
+            <td>review</th>
+            <td>The review left with the rating</th>
+        </tr>
+        <tr style="text-align: right;">
+            <td>rating_avg</th>
+            <td>The average rating for a specific recipe</th>
+        </tr>
+        <tr style="text-align: right;">
+            <td>calories</th>
+            <td>The number of calories in the recipe</th>
+        </tr>
+        <tr style="text-align: right;">
+            <td>year</th>
+            <td>The year in which the recipe was submitted</th>
+        </tr>
+    </tbody>
+</table>
 
 ## Cleaning and EDA
 When conducting our data cleaning process we cleaned several columns. 
