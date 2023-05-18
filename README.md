@@ -15,18 +15,18 @@ Our dataset contains 234429 rows
 <br><br>
 The columns we are interested in are detailed below
 <br><br>
-| Column | Description |
-| ----------- | ----------- |
-| id | Recipe ID |
-| minutes | Time taken to prepare the recipe |
-| contributor_id | ID of the user who submitted the recipe |
-| submitted | The date when the user posted the recipe |
-| nutrition | Nutrition information including calories (#), total fat ,sugar, sodium, protein, saturated fat, carbohydrates |
-| rating             | The rating of the recipe |
-| review             | The review left with the rating |
-| rating_avg         | The average rating for a specific recipe |
-| calories           | The number of calories in the recipe |
-| year               | The year in which the recipe was submitted |
+| Column             | Description                                                                                                  |
+| ------------------ | -----------                                                                                                  |
+| id                 | Recipe ID                                                                                                    |
+| minutes            | Time taken to prepare the recipe                                                                             |
+| contributor_id     | ID of the user who submitted the recipe                                                                      |
+| submitted          | The date when the user posted the recipe                                                                     |
+| nutrition          | Nutrition information including calories (#), total fat ,sugar, sodium, protein, saturated fat, carbohydrates|
+| rating             | The rating of the recipe                                                                                     |
+| review             | The review left with the rating                                                                              |
+| rating_avg         | The average rating for a specific recipe                                                                     |
+| calories           | The number of calories in the recipe                                                                         |
+| year               | The year in which the recipe was submitted                                                                   |
 
 ## Cleaning and EDA
 When conducting our data cleaning process we cleaned several columns. 
