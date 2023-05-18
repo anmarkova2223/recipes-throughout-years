@@ -65,16 +65,20 @@ We made a scatterplot with years on the x-axis and average rating on the y-axis.
 
 This is a table grouped by year, that takes the mean of the rating column for every year. The mean values tend to range between 4.46 and 4.71. We wanted to know if such differences were significant or not.
 
-|   rating |
-|---------:|
-|  4.66142 |
-|  4.68105 |
-|  4.69894 |
-|  4.70747 |
-|  4.72201 |
-|  4.70401 |
-|  4.71736 |
-|  4.68498 |
-|  4.50763 |
-|  4.46356 |
-|  4.49537 |
+|   year |   rating |
+|-------:|---------:|
+|   2008 |  4.66142 |
+|   2009 |  4.68105 |
+|   2010 |  4.69894 |
+|   2011 |  4.70747 |
+|   2012 |  4.72201 |
+|   2013 |  4.70401 |
+|   2014 |  4.71736 |
+|   2015 |  4.68498 |
+|   2016 |  4.50763 |
+|   2017 |  4.46356 |
+|   2018 |  4.49537 |
+
+## Assessment of Missingness
+In this dataset, we believe that the missingness type of missing values in `rating` would be NMAR. When we merge the `RAW_recipes.csv` and `RAW_interactions.csv`, we are doing a left outer merge which means that we would preserve the recipe even if there is no rating or comments made by users. Therefore, these recipes do not have ratings. The missing values in the `rating` column simply suggests that `rating` itself is missing.
+In addition, we believe that users who really loved the recipes are more likely to rate the recipe. This also explains why `rating` would be NMAR since they are missing depending on how users liked it which is essentially the actual value itself.
