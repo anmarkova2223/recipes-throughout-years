@@ -195,7 +195,7 @@ In this dataset, we believe that the missingness type of missing values in `revi
 ### Permutation Testing
 
 As our question is centered around the distribution of rating in different years, our selected column would be `rating` and we are testing its missingness dependency on two columns: `calories` and `review`. In this case, we found our observed statistics to be the absolute difference in mean `calories` and `review` between the two groups of ratings missing and ratings not missing. We then run permutation tests 1,000 times to get 1,000 test statistics and calculate the probability of seeing values equal to or greater than our observed mean difference.
-<iframe src="assets/rating-calories-missigness.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/rating-calories-missingness.html" width=800 height=600 frameBorder=0></iframe>
 When testing whether `rating` missingness depends on `calories`, our p-value is 0.0. Since 0.0 < 0.05, we reject the null hypothesis. This means the missingness of `rating` would be dependent on the `calories` column.
 <iframe src="assets/missigness-graph.html" width=800 height=600 frameBorder=0></iframe>
 When testing whether `rating` missingness depends on `reviews`, the p-value that we get is 0.2. Because 0.2 > 0.05 (our significance level) we fail to reject the null hypothesis. The missingness of `rating` would not depend on `review` column.
