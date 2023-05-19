@@ -5,7 +5,7 @@ This website details Exploratory Data Analysis and Visualizations on the Recipes
 
 In this project we will be analyzing the ‘Recipes’ data set. This dataset details different recipes, their nutritional breakdown, the steps needed to complete them, and the user ratings. We were curious as to whether the recipes in the later years had the same rating distribution as the recipes in the earlier years.
 
-Specifically the question we posed was: Do the recipes from the year 2018 have the same rating distribution as the recipes from earlier years?
+The **question** we answer is: Do the recipes from the year 2018 have the same rating distribution as the recipes from earlier years?
 
 We wanted to know whether the sheer abundance of existing recipes affects how the users rate the recipes. We hypothesize that the more recipes there are, the less likely they are to be very unique. We were curious if that or any other factors had an affect on the ratings. We care because this information can help recipe websites grow and expand faster as a business. The higher ratings the website has the more prestigious and reliable it is. If there was something that made the ratings different in the later year compared to earlier years, we would be able to work on another project to further investigate what caused the changes in the ratings.
 <br><br>
@@ -186,26 +186,33 @@ This is a table grouped by year, that takes the mean of the rating column for ev
 |   2018 |  4.49537 |
 
 ## Assessment of Missingness
-In this dataset, we believe that the missingness type of missing values in `rating` would be NMAR. When we merge the `RAW_recipes.csv` and `RAW_interactions.csv`, we are doing a left outer merge which means that we would preserve the recipe even if there is no rating or comments made by users. Therefore, these recipes do not have ratings. The missing values in the `rating` column simply suggests that `rating` itself is missing.
-In addition, we believe that users who really loved the recipes are more likely to rate the recipe. This also explains why `rating` would be NMAR since they are missing depending on how users liked it which is essentially the actual value itself.
+
+### NMAR Missingness in `review` column
+
+In this dataset, we believe that the missingness type of missing values in `review` would be NMAR.  We believe that users who had strong positive or negative feelings about  the recipes are more likely to leave a review. The user would be less likely to leave a review if the feeling mildly about the recipe. This explains why `review` would be NMAR since they are missing depending on how users feel about the recipe which is essentially the value itself.
 <br>
 <br>
-As our question is centered around the distribution of rating in different years, our selected column would be `rating` and we are testing its missingness dependency on two columns: `calories` and `minutes`. In this case, we found our observed statistics to be the absolute difference in mean `calories` and `minutes` between the two groups of ratings missing and ratings not missing. We then run permutation tests 1,000 times to get 1,000 test statistics and calculate the probability of seeing values equal to or greater than our observed mean difference.
-When testing whether `rating`’s missingness depends on `reviews`, our p-value is 0.2 which is greater than our significance level of 0.05 which means the missingness of `rating` would not be dependent on the `reveiws` column.
+### Permutation Testing
+
+As our question is centered around the distribution of rating in different years, our selected column would be `rating` and we are testing its missingness dependency on two columns: `calories` and `review`. In this case, we found our observed statistics to be the absolute difference in mean `calories` and `review` between the two groups of ratings missing and ratings not missing. We then run permutation tests 1,000 times to get 1,000 test statistics and calculate the probability of seeing values equal to or greater than our observed mean difference.
+<iframe src="assets/rating-calories-missigness.html" width=800 height=600 frameBorder=0></iframe>
+When testing whether `rating` missingness depends on `calories`, our p-value is 0.0. Since 0.0 < 0.05, we reject the null hypothesis. This means the missingness of `rating` would be dependent on the `calories` column.
 <iframe src="assets/missigness-graph.html" width=800 height=600 frameBorder=0></iframe>
-When testing whether `rating`’s missingness depends on `year`, our p-value is 0.0 which means the missingness of `rating` would dependent on the `year` column.
+When testing whether `rating` missingness depends on `reviews`, the p-value that we get is 0.2. Because 0.2 > 0.05 (our significance level) we fail to reject the null hypothesis. The missingness of `rating` would not depend on `review` column.
 
 ## Hypothesis Testing
+
+In our hypothesis testing we aim to answer the question: **Do the ratings for the recipes published in 2018 differ from the ratings for the recipes published before 2018?** 
 
 Our **null hypothesis** is that the distribution of ratings for recipes in 2018 is the same with the distribution of ratings for recipes for years before 2018. 
 <br>
 Our **alternative hypothesis** is that the distribution of ratings for recipes in 2018 is different from the distribution of recipes for years before 2018.
 <br>
 <br>
+In this case, as we are examining the differences in categorical distributions. We are using the total variation distance between the two rating distributions in 2018 and years before 2018. Since the numbers of recipes posted in 2018 and years before 2018 are different, we are calculating the total variation distances using proportions in each rating category.
+
+In our permutation test, we first drop the rows where ratings have NaN values as we would not want the number of missing rating values to differ in our two groups each time when we perform a permutation test. We then shuffle the `year` column and assign it as `shuffled_year`. We then group the data by 2018 and years before 2018 based on `shuffled_year`. After grouping the DataFrame into two groups, we get the proportions of the rating distribution for each of the groups and then take the total variation distance between the distributions. We would repeat the process 1,000 times to see what is the probability of seeing values equal to or even more extreme than our observed total variation distance.
 <iframe src="assets/hypothesis-graph.html" width=800 height=600 frameBorder=0></iframe>
-Our null hypothesis is that the distribution of ratings for recipes in 2018 is the same with the distribution of ratings for recipes for years before 2018. Our alternative hypothesis is that the distribution of ratings for recipes in 2018 is different from the distribution of recipes for years before 2018.
-In this case, as we are examining the differences in categorical distributions, we are using the total variation distance between the two rating distributions in 2018 and years before 2018. Since the numbers of recipes posted in 2018 and years before 2018 are different, we are calculating the total variation distances using proportions in each rating category.
-In our permutation test, we first drop the rows where ratings have NaN values as we would not want the number of missing rating values to differ in our two groups each time when we perform a permutation test.We then shuffle the `year` column and assign it as `shuffled_year`. We then group the data by 2018 and years before 2018 based on `shuffled_year`. After grouping the DataFrame into two groups, we get the proportions of the rating distribution for each of the groups and then take the total variation distance between the distributions. We would repeat the process 1,000 times to see what is the probability of seeing values equal to or even more extreme than our observed total variation distance.
-Since we would like to fix our confidence interval at 0.05 and our p-value is 0.09, we would fail to reject the null hypothesis that the distribution of ratings for recipes in 2018 is the same with the distribution of ratings for recipes for years before 2018. 
+Since we would like to fix our significance level at 0.05 and our p-value is 0.09, we would fail to reject the null hypothesis. The graph shows the distribution of tvds compared to our observed statistic. The distribution of ratings for recipes in 2018 is the same with the distribution of ratings for recipes for years before 2018. 
 
 
