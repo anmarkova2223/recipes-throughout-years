@@ -5,9 +5,11 @@ This website details Exploratory Data Analysis and Visualizations on the Recipes
 
 In this project we will be analyzing the ‘Recipes’ data set. This dataset details different recipes, their nutritional breakdown, the steps needed to complete them, and the user ratings. We were curious as to whether the recipes in the later years had the same rating distribution as the recipes in the earlier years.
 
-The **question** we answer is: Do the recipes from the year 2018 have the same rating distribution as the recipes from earlier years?
+The question we investigate is: **Are the recipes from recent years (2018) rated the same as the recipes from ealier years?** 
 
-We wanted to know whether the sheer abundance of existing recipes affects how the users rate the recipes. We hypothesize that the more recipes there are, the less likely they are to be very unique. We were curious if that or any other factors had an affect on the ratings. We care because this information can help recipe websites grow and expand faster as a business. The higher ratings the website has the more prestigious and reliable it is. If there was something that made the ratings different in the later year compared to earlier years, we would be able to work on another project to further investigate what caused the changes in the ratings.
+We will be using the data from `RAW_recipes.csv` and `RAW_interactions.csv`. The first file contains the data about the recipes, while the second file contains the data about the ratings of these recipes. Two csv files merged together will form our DataFrame.
+
+We wanted to know whether the year in which the recipe was published affects how the users rate the recipes. We hypothesize that the more recipes there are, the less likely they are to be very unique, so the ratings would change. We care because this information can help recipe websites grow and expand faster as a business. The higher ratings the website has the more prestigious and reliable it is. If there was something that made the ratings different in the later year compared to earlier years, we would be able to work on another project to further investigate what caused the changes in the ratings.
 <br><br>
 Our dataset contains 234429 rows
 <br><br>
@@ -18,48 +20,59 @@ The columns we are interested in are detailed below
         <tr style="text-align: left;">
             <th>Column</th>
             <th>Description</th>
+            <th>Data Types</th>
         </tr>
     </thead>
     <tbody>
         <tr style="text-align: left;">
             <td>id</td>
             <td>Recipe ID</td>
+            <td>string</td>
         </tr>
         <tr style="text-align: left;">
             <td>minutes</td>
-            <td>Recipe ID</td>
+            <td>Minutes it takes to prepare the recipe</td>
+            <td>int</td>
         </tr>
         <tr style="text-align: left;">
             <td>contributor_id</td>
             <td>ID of the user who submitted the recipe</td>
+            <td>string</td>
         </tr>
         <tr style="text-align: left;">
             <td>submitted</td>
             <td>The date when the user posted the recipe</td>
+            <td>string</td>
         </tr>
         <tr style="text-align: left;">
             <td>nutrition</td>
             <td>Nutrition information including calories (#), total fat ,sugar, sodium, protein, saturated fat, carbohydrates</td>
+            <td>string</td>
         </tr>
         <tr style="text-align: left;">
             <td>rating</td>
             <td>The rating of the recipe</td>
+            <td>int</td>
         </tr>
         <tr style="text-align: left;">
             <td>review</td>
             <td>The review left with the rating</td>
+            <td>string</td>
         </tr>
         <tr style="text-align: left;">
             <td>rating_avg</td>
             <td>The average rating for a specific recipe</td>
+            <td>float</td>
         </tr>
         <tr style="text-align: left;">
             <td>calories</td>
             <td>The number of calories in the recipe</td>
+            <td>float</td>
         </tr>
         <tr style="text-align: left;">
             <td>year</td>
             <td>The year in which the recipe was submitted</td>
+            <td>int</td>
         </tr>
     </tbody>
 </table>
@@ -71,13 +84,14 @@ When conducting our data cleaning process we cleaned several columns.
 We cleaned the rating column by replacing the “0” values with np.NaN values. This changed the amount of actual data that we have and can use. In fact, while conducting our permutation tests we chose to drop the rows with np.NaN values. We made this decision because while shuffling the years column and counting up every type of rating we noticed that the results were inconsistent. This is because the amount of np.NaN value within each year was different after every permutation, making it difficult to compare our data. 
 
 #### `rating_avg`:
-We also performed imputation of the ratings on the missing values. For every recipe we computed the average rating, and if any of the ratings were missing for that recipe we replaced it with that value. To make the data more readable and easier to manipulate we used pd.cut to transform float ratings into strict [1, 2, 3, 4, 5] rating by rounding down.
+For every recipe we computed the average rating, and assigned it to that recipe. This helped us see the distribution of the ratings since we were able to significantly reduce the missing values.
 	
-#### `submitted`:
-We changed the submitted column to only contain the year the recipe was submitted in, to better suit our graphs and analysis. Since we are only interested in the year that the rating was submitted in, we changed that column to match.
+#### `year`:
+We used the submitted column to extract the year the recipe was submitted in, to better suit our graphs and analysis. Since we are only interested in the year that the rating was submitted in, we created a new column to store that data.
 
 #### `calories`:
-The nutrition column had several different nutrition labels. We were interested in trends between calories and ratings, so we decided to extract the caloric value of each recipe from the nutrition column and add it as a new column.
+The nutrition column had several different nutrition labels. We were interested in trends between calories and ratings, so we decided to extract the caloric value of each recipe as a float from the nutrition column and add it as a new column.
+
 #### Our Cleaned DataFrame
 <table border="1" class="dataframe">
   <thead>
@@ -165,7 +179,7 @@ We created a density histogram that describes the proportion of each rating. As 
 
 ### Bivariate Data
 <iframe src="assets/year-and-ratings.html" width=800 height=600 frameBorder=0></iframe>
-We made a scatterplot with years on the x-axis and average rating on the y-axis. As you can see on the graph, there tends to be more points towards the higher ratings in general. There also seems to be more points in earlier years. For example, in 2008, the points from 3-5 form a line showing that the majority of points are in that region. In contrast, in 2018, there are a lot of points around 4-5 rating and there are more gaps in the data. This shows that while the trend of having more points towards higher ratings is consistent, there is less data in 2018.
+We made a scatterplot with years on the x-axis and average rating on the y-axis. As you can see on the graph, there tends to be more points towards the higher ratings in general. There also seems to be more points in earlier years. For example, in 2008, the points from 3-5 form a line showing that the majority of points are in that region. In contrast, in 2018, there are still clusters of points around 4-5 rating but more gaps in the data. This shows that while the trend of having more points towards higher ratings is consistent, there is less data in 2018. 
 
 ### Aggregate Data
 
@@ -191,7 +205,7 @@ This is a table grouped by year, that takes the mean of the rating column for ev
 
 In this dataset, we believe that the missingness type of missing values in `review` would be NMAR.  We believe that users who had strong positive or negative feelings about  the recipes are more likely to leave a review. The user would be less likely to leave a review if the feeling mildly about the recipe. This explains why `review` would be NMAR since they are missing depending on how users feel about the recipe which is essentially the value itself.
 <br>
-<br>
+
 ### Permutation Testing
 
 As our question is centered around the distribution of rating in different years, our selected column would be `rating` and we are testing its missingness dependency on two columns: `calories` and `review`. In this case, we found our observed statistics to be the absolute difference in mean `calories` and `review` between the two groups of ratings missing and ratings not missing. We then run permutation tests 1,000 times to get 1,000 test statistics and calculate the probability of seeing values equal to or greater than our observed mean difference.
@@ -206,13 +220,14 @@ In our hypothesis testing we aim to answer the question: **Do the ratings for th
 
 Our **null hypothesis** is that the distribution of ratings for recipes in 2018 is the same with the distribution of ratings for recipes for years before 2018. 
 <br>
+
 Our **alternative hypothesis** is that the distribution of ratings for recipes in 2018 is different from the distribution of recipes for years before 2018.
-<br>
+
 <br>
 In this case, as we are examining the differences in categorical distributions. We are using the total variation distance between the two rating distributions in 2018 and years before 2018. Since the numbers of recipes posted in 2018 and years before 2018 are different, we are calculating the total variation distances using proportions in each rating category.
 
 In our permutation test, we first drop the rows where ratings have NaN values as we would not want the number of missing rating values to differ in our two groups each time when we perform a permutation test. We then shuffle the `year` column and assign it as `shuffled_year`. We then group the data by 2018 and years before 2018 based on `shuffled_year`. After grouping the DataFrame into two groups, we get the proportions of the rating distribution for each of the groups and then take the total variation distance between the distributions. We would repeat the process 1,000 times to see what is the probability of seeing values equal to or even more extreme than our observed total variation distance.
 <iframe src="assets/hypothesis-graph.html" width=800 height=600 frameBorder=0></iframe>
-Since we would like to fix our significance level at 0.05 and our p-value is 0.09, we would fail to reject the null hypothesis. The graph shows the distribution of tvds compared to our observed statistic. The distribution of ratings for recipes in 2018 is the same with the distribution of ratings for recipes for years before 2018. 
+The graph shows the distribution of tvds compared to our observed statistic. Since we would like to fix our significance level at 0.05 and our p-value is 0.09, we would fail to reject the null hypothesis (0.09 > 0.05). The distribution of ratings for recipes in 2018 is the same with the distribution of ratings for recipes for years before 2018. 
 
 
